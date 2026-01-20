@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Language Translation Tool (Azure)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f7fa; padding: 20px; }
+    .container { max-width: 700px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    textarea, select, button { width: 100%; padding: 10px; margin-top: 10px; }
+    .row { display: flex; gap: 10px; }
+    button { background: #2563eb; color: white; border: none; cursor: pointer; }
+    .output { background: #f1f5f9; padding: 10px; min-height: 80px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>Language Translation Tool</h2>
+
+  <textarea id="inputText" placeholder="Enter text to translate..."></textarea>
+
+  <div class="row">
+    <select id="sourceLang">
+      <option value="en">English</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+      <option value="hi">Hindi</option>
+    </select>
+
+    <select id="targetLang">
+      <option value="hi">Hindi</option>
+      <option value="en">English</option>
+      <option value="es">Spanish</option>
+      <option value="fr">French</option>
+      <option value="de">German</option>
+    </select>
+  </div>
+
+  <button onclick="translateText()">Translate</button>
+
+  <div id="outputText" class="output"></div>
+</div>
+
+<script>
+async function translateText() {
+  const text = inputText.value;
+  const source = sourceLang.value;
+  const target = targetLang.value;
+
+  const response = await fetch('http://localhost:3000/translate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ text, source, target })
+  });
+
+  const data = await response.json();
+  outputText.innerText = data.translatedText || 'Translation failed';
+}
+</script>
+</body>
+</html>
