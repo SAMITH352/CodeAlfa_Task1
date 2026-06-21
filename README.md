@@ -83,11 +83,4 @@ Translates text from one language to another.
 - **API Integration:** Axios
 - **Azure Services:** Microsoft Translator API
 
-## License
 
-This project is for educational purposes. Please ensure compliance with Azure's terms of service and usage policies.
-
-## Contributing
-
-Feel free to submit issues and enhancement requests.</content>
-<parameter name="filePath">c:\Users\samit\Downloads\Code_Alpha projects\azure-translator-app\README.md
